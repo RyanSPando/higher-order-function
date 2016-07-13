@@ -8,10 +8,10 @@
 //Start functions
 //========================
 
-function any(array, callbackFn) { //perform function on all elements of an array
-  var result = [];
+function any(array, callbackFn) { //takes an array, checks a conditional function per element. Returns boolean true if only one element in array is true.
+
   for (var i = 0; i < array.length; i++) {
-    if(callbackFn(array[i]) === true)
+    if(callbackFn(array[i]))
     return true;
   }
   return false;
@@ -29,24 +29,31 @@ function greaterThan10(number) {  //return true if a value is greater than 10.
   }
 }
 
-function surprise {
-
+function surprise() {
+  return(function(){return 'surprise!';})
 }
 
-function filter {
+function filter(array, callbackFn) {//takes an array, checks a conditional function per element, and adds the element to a new array if true.
+  var newArr = [];
 
-}
-
-function onlyOdd(oddArr) {
-  var newArr =[];
-  for (var i = 0; i < oddArr.length; i++) {
-    if ( oddArr[i] % 2 === 1) {
-      newArr.push(oddArr[i]);
-    }
+  for (var i = 0; i < array.length; i++) {
+    if(callbackFn(array[i]) === true)
+    newArr.push(array[i]);
   }
+
   return newArr;
 }
-onlyOdd([1,2,3,4]);
+
+function onlyOdd(number) {//returns true if number is odd
+  if ( number % 2 === 1){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+filter([1,2,3,4],onlyOdd);
 
 function sumTwoNumbers(num){//adds two numbers
   return function (input) {
